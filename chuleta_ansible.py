@@ -69,6 +69,17 @@ ansible makigas.es -m apt -a 'name=vim state=present'
 # -K: para que pregunte por contraseña
 ansible makigas.es -m apt -a 'name=vim state=present' -b -K
 
+# Validar si todo el inventario de hosts estan listos para ser manejados con Ansible
+ansible all -m ping
+
+# Correr el comando uptime en todos el inventario de hosts 'web'
+ansible web -m command -a "uptime"
+
+# Validar la informacion del sistema local y desplegar la informacion descubierta
+ansible localhost -m setup
+
+# Se puede agregar --check al final de cada comando para validar si habran cambios despues de la ejecucion
+ansible localhost -m command -a "uptime" --check
 
 
 
